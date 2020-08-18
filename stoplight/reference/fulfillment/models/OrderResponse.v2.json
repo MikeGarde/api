@@ -6,53 +6,47 @@
       "type": "integer",
       "description": "FDC ID for this order"
     },
-    "trackingNumbers": {
-      "type": "array",
-      "items": {
-        "$ref": "./TrackingNumber.v2.json"
-      }
-    },
-    "validatedConsignee": {
-      "$ref": "./Consignee.v2.json"
-    },
-    "originalConsignee": {
-      "$ref": "./Consignee.v2.json"
-    },
-    "currentStatus": {
-      "$ref": "./StatusEvent.v2.json"
-    },
-    "warehouse": {
-      "$ref": "./Warehouse.v2.json"
-    },
-    "merchant": {
-      "$ref": "./Merchant.v2.json"
-    },
-    "departDate": {
+    "merchantOrderId": {
       "type": "string",
-      "description": "DateTime order departed an FDC warehouse",
-      "format": "date-time"
+      "description": "Merchant provided ID"
     },
-    "dispatchDate": {
+    "merchantShippingMethod": {
       "type": "string",
-      "description": "DateTime order was dispatched for fulfillment by FDC",
-      "format": "date-time"
+      "description": "Requested ship method"
     },
     "recordedOn": {
       "type": "string",
       "description": "DateTime order was recorded by FDC",
       "format": "date-time"
     },
-    "merchantShippingMethod": {
-      "type": "string",
-      "description": "Requested ship method"
+    "dispatchDate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "DateTime order was dispatched for fulfillment by FDC",
+      "format": "date-time"
+    },
+    "departDate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "DateTime order departed an FDC warehouse",
+      "format": "date-time"
     },
     "purchaseOrderNum": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "Merchant provided PO#"
     },
-    "merchantOrderId": {
-      "type": "string",
-      "description": "Merchant provided ID"
+    "merchant": {
+      "$ref": "./Merchant.v2.json"
+    },
+    "warehouse": {
+      "$ref": "./Warehouse.v2.json"
     },
     "parentOrder": {
       "type": "object",
@@ -62,16 +56,31 @@
           "description": "Reference to parent `id` if order was grouped"
         }
       }
+    },
+    "originalConsignee": {
+      "$ref": "./Consignee.v2.json"
+    },
+    "validatedConsignee": {
+      "$ref": "./Consignee.v2.json"
+    },
+    "trackingNumbers": {
+      "type": "array",
+      "items": {
+        "$ref": "./TrackingNumber.v2.json"
+      }
+    },
+    "currentStatus": {
+      "$ref": "./StatusEvent.v2.json"
     }
   },
   "required": [
     "id",
-    "validatedConsignee",
-    "originalConsignee",
-    "currentStatus",
-    "merchant",
-    "recordedOn",
+    "merchantOrderId",
     "merchantShippingMethod",
-    "merchantOrderId"
+    "recordedOn",
+    "merchant",
+    "originalConsignee",
+    "validatedConsignee",
+    "currentStatus"
   ]
 }
